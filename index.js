@@ -1,25 +1,25 @@
 require('dotenv').config();
-
  const express = require('express');
  const mongoose = require ('mongoose');
  const cors = require('cors');
+ const cookieParser = require('cookie-parser'); 
 
- 
 
  const app=express();
 
  app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from React app
+  origin: process.env.FRONTEND_URL, // Allow requests from React app
   credentials: true                // Allow cookies/headers if needed
 }));
 
   app.use(express.json());
+  app.use(cookieParser());
 
-  // Router import karo
+  // Router import
 const authRoutes = require('./routes/auth');
 
 
-  // app.use ka use karke router ko mount karo
+  // app.use ka use karke router ko mount
 app.use('/api/auth', authRoutes);
 
 //import todoRouter
@@ -34,9 +34,9 @@ app.use('/api/subtodos', subtodoRoutes);
 
 
 
- const PORT = 3000;
+ const PORT = process.env.PORT;
 
-mongoose.connect('mongodb://localhost:27017/testdb',{
+mongoose.connect(process.env.MONGO_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
 

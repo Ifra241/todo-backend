@@ -9,12 +9,12 @@ const subtodoSchema = new mongoose.Schema({
      description: String,
   priority: {
     type: String,
-    enum: ['low', 'medium', 'high'],
+    enum: ['Low', 'Medium', 'High'],
     default: 'medium',
   },
   status: {
     type: String,
-    enum: ['pending', 'in progress', 'completed'],
+    enum: ['Pending', 'In progress', 'Completed'],
     default: 'pending',
   },
   folder: {
